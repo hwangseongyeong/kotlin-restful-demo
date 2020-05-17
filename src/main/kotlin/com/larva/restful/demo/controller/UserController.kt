@@ -1,27 +1,30 @@
 package com.larva.restful.demo.controller
 
 import com.larva.restful.demo.data.UserDto
+import com.larva.restful.demo.service.UserService
 import io.swagger.annotations.Api
 import org.springframework.web.bind.annotation.*
 
 @Api(value = "User CRUD", tags = ["User"])
 @RestController
 @RequestMapping("/api/user")
-class UserController {
+class UserController (
+        private val service: UserService
+) {
 
     @GetMapping("/{id}")
     fun get(@PathVariable(value = "id", required = true) id: String )
-            = UserDto("larva","황성영", "홍제동")
+            = service.find(id)
 
     @PostMapping
     fun post(@RequestBody user: UserDto)
-            = UserDto(user.id, user.name, user.address)
+            = service.save(user)
 
-    @PutMapping("/{id}")
+    @PutMapping
     fun put(@RequestBody user: UserDto, @PathVariable(value = "id", required = true) id: String)
-            = UserDto(id,user.name, user.address)
+            = service.save(user)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable(value = "id", required = true) id: String)
-            = UserDto(id,"황성영", "홍제동")
+            = service.delete(id)
 }
