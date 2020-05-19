@@ -1,4 +1,4 @@
-package com.larva.restful.demo.domain.entity
+package com.larva.restful.demo.domain.master.entity
 
 import javax.persistence.*
 

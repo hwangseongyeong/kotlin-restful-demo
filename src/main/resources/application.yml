@@ -13,8 +13,15 @@ spring:
       ddl-auto: none
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
   datasource:
-    platform: h2
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test;AUTO_SERVER=true
-    username: sa
-    password:
+    master:
+      platform: h2
+      jdbc-url: jdbc:h2:tcp://localhost/~/test;AUTO_SERVER=true
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+    slave:
+      platform: h2
+      jdbc-url: jdbc:h2:tcp://localhost/~/test;AUTO_SERVER=true
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver

@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/user")
 class UserController (
-        private val service: UserService
+        private val userService: UserService
 ) {
 
     @GetMapping("/{id}")
     fun get(@PathVariable(value = "id", required = true) id: String )
-            = service.find(id)
+            = userService.find(id)
 
     @PostMapping
     fun post(@RequestBody user: UserDto)
-            = service.save(user)
+            = userService.save(user)
 
     @PutMapping
     fun put(@RequestBody user: UserDto, @PathVariable(value = "id", required = true) id: String)
-            = service.save(user)
+            = userService.save(user)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable(value = "id", required = true) id: String)
-            = service.delete(id)
+            = userService.delete(id)
 }
